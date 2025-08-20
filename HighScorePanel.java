@@ -15,6 +15,6 @@ class HighScorePanel extends JPanel {
         add(new JScrollPane(scoreList), BorderLayout.CENTER);
         JButton backBtn = new JButton("Back");
         backBtn.addActionListener(e -> frame.showMainMenu());
-        add(backBtn, BorderLayout.SOUTH);
+        add(backBtn, BorderLayout.SOUTH);// Testing PR feature
     }
 }
