@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+// Added commit test - Hitesh
 class HighScorePanel extends JPanel {
     public HighScorePanel(MainFrame frame) {
         setLayout(new BorderLayout());
