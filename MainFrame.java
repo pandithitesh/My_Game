@@ -7,7 +7,7 @@ public class MainFrame extends JFrame {
     MainMenuPanel mainMenuPanel;
     ConfigPanel configPanel;
     HighScorePanel highScorePanel;
-    TetrisPanel tetrisPanel;
+    GamePanel gamePanel;
 
     public MainFrame() {
         setTitle("Tetris");
@@ -16,11 +16,11 @@ public class MainFrame extends JFrame {
         mainMenuPanel = new MainMenuPanel(this);
         configPanel = new ConfigPanel(this);
         highScorePanel = new HighScorePanel(this);
-        tetrisPanel = new TetrisPanel(this);
+        gamePanel = new GamePanel(this);
         mainPanel.add(mainMenuPanel, "MainMenu");
         mainPanel.add(configPanel, "Config");
         mainPanel.add(highScorePanel, "HighScores");
-        mainPanel.add(tetrisPanel, "Game");
+        mainPanel.add(gamePanel, "Game");
         add(mainPanel);
         pack();
         setLocationRelativeTo(null);
@@ -37,10 +37,21 @@ public class MainFrame extends JFrame {
 
     public void showHighScores() {
         cardLayout.show(mainPanel, "HighScores");
+        // Refresh the high score panel to show latest scores
+        highScorePanel.refreshScores();
     }
 
     public void showGame() {
         cardLayout.show(mainPanel, "Game");
-        tetrisPanel.requestFocusInWindow();
+        // Reset the game for a fresh start with new dimensions
+        gamePanel.getTetrisPanel().resetGame();
+        // Pack the frame to accommodate the new game panel size
+        pack();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new MainFrame().setVisible(true);
+        });
     }
 }
